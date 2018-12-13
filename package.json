@@ -4,8 +4,7 @@
   "description": "Projet DAWIN - Listes de films en NodeJs et VueJs",
   "main": "src/node/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm install && node_modules/.bin/webpack --progress --hide-modules && node src/node/app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -22,8 +21,19 @@
   },
   "homepage": "https://github.com/JulesRx/VueMovies#readme",
   "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.1.3",
+    "express": "^4.16.4",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.6",
     "vue": "^2.5.21",
+    "vue-axios": "^2.1.4",
     "vue-router": "^3.0.2",
     "webpack": "^4.27.1"
+  },
+  "devDependencies": {
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0"
   }
 }
