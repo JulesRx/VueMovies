@@ -5,5 +5,6 @@ module.exports = {
         data: '@import "@/scss/settings.scss";'
       }
     }
-  }
+  },
+  publicPath: process.env.NODE_ENV === 'production' ? '/VueMovies/' : '/'
 }
