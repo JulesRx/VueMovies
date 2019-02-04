@@ -23,3 +23,35 @@ https://scleriot.github.io/web-dawin/project/alternants.html
 ## Contact
 
 Jules Raffoux - jules.raffoux@etu.u-bordeaux.fr
+
+## Vue CLI
+
+Vue CLI Instructions
+
+### Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run your tests
+```
+npm run test
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
