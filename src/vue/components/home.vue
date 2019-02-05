@@ -1,10 +1,7 @@
 <template>
   <div class="movies">
-    <div class="logo">
-      <img src="@/static/logo.png" alt="Logo Vue">
-    </div>
+    <h2>Movies</h2>
 
-    <h3>Movies</h3>
     <ul>
       <MovieItem v-for="m in movies" :key="m.imdbID" :movie="m"/>
     </ul>
@@ -12,7 +9,7 @@
 </template>
 
 <script>
-import MovieItem from "./movie-item";
+import MovieItem from "./movie/movie-item";
 
 export default {
   name: "Movies",
@@ -31,11 +28,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-.movies {
-  .logo {
-    text-align: center;
-  }
-}
-</style>

@@ -19,7 +19,7 @@ body {
       font-weight: bold;
       color: $text-color;
 
-      &.router-link-active {
+      &.router-link-exact-active {
         color: $link-color;
       }
     }
