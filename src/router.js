@@ -7,7 +7,7 @@ import About from '@/vue/components/about.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: 'history', // Don't work on gh-pages : https://bit.ly/2WJawOQ
   routes: [
     { path: '/', name: 'Home', component: Home },
     { path: '/about', name: 'About', component: About },
