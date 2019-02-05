@@ -25,7 +25,7 @@ export default {
     };
   },
   mounted() {
-    this.$http.get("http://www.omdbapi.com/?t=Interstellar").then(res => {
+    this.$http.get("https://www.omdbapi.com/?t=Interstellar").then(res => {
       this.movies.push(res.data);
     });
   }
