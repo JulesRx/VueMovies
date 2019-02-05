@@ -1,0 +1,36 @@
+@import "~normalize.css";
+@import "./imports";
+
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: $text-color;
+
+  a {
+    color: $link-color;
+  }
+
+  #nav {
+    text-align: center;
+    padding: 30px;
+
+    a {
+      font-weight: bold;
+      color: $text-color;
+
+      &.router-link-active {
+        color: $link-color;
+      }
+    }
+
+    .separator {
+      margin: 0 4px;
+    }
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+}

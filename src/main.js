@@ -4,7 +4,7 @@ import router from './router'
 
 import axios from 'axios';
 
-import './assets/css/styles.scss';
+import './static/css/styles.scss';
 
 Vue.config.productionTip = false
 
