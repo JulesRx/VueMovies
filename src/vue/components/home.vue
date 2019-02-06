@@ -1,6 +1,6 @@
 <template>
   <div class="movies">
-    <h2>Movies</h2>
+    <h1>Movies</h1>
 
     <p>
       <router-link to="/movie/add">Add new Movie</router-link>
