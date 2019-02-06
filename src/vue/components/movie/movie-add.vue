@@ -8,7 +8,7 @@
       <br>
 
       <label for="release">Release date :</label>
-      <input type="date" v-model="form.date" id="release">
+      <input type="number" v-model="form.date" id="release">
       <br>
 
       <label for="director_name">Director :</label>
