@@ -23,3 +23,6 @@ git commit -m 'deploy'
 git push -f git@github.com:julesrx/vuemovies.git master:gh-pages
 
 cd -
+
+echo ""
+echo "Deployed to https://julesrx.github.io/VueMovies/"
