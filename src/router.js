@@ -7,7 +7,8 @@ import About from '@/vue/components/about.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history', // Don't work on gh-pages : https://bit.ly/2WJawOQ
+  // history mode do not work with gh-pages without a custom domain: https://bit.ly/2WJawOQ
+  mode: process.env.NODE_ENV === 'production' ? 'hash' : 'history',
   routes: [
     { path: '/', name: 'Home', component: Home },
     { path: '/about', name: 'About', component: About },
