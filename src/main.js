@@ -9,8 +9,11 @@ import store from './store'
 
 Vue.config.productionTip = false
 
-axios.defaults.params = {};
-axios.defaults.params['apikey'] = '8633b3c4';
+// api key for imdb
+const iaxios = new axios.create({
+  params: { 'apikey': '8633b3c4' }
+})
+Vue.prototype.$ihttp = iaxios;
 Vue.prototype.$http = axios;
 
 new Vue({

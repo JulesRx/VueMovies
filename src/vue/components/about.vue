@@ -1,13 +1,32 @@
 <template>
-<div class="about">
-  <h2>About</h2>
-  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt iure nobis ducimus recusandae, rerum laborum nihil, praesentium eaque vitae nesciunt cumque molestias labore. Eum consectetur reiciendis aliquid neque nihil quisquam!</p>
-</div>
+  <div class="about">
+    <div class="readme" v-if="!content.length">
+      <h1>VueMovies</h1>
+      <p>Projet DAWIN - Listes de films en NodeJs et VueJs par <a href="https://github.com/julesrx">Jules Raffoux</a> (<a href="mailto:jules.raffoux@etu.u-bordeaux.fr">jules.raffoux@etu.u-bordeaux.fr</a>)</p>
+    </div>
+    <div class="readme" v-else v-html="content"></div>
+  </div>
 </template>
 
 <script>
+import marked from "marked";
+
 export default {
-  name: "About"
+  name: "About",
+  data: () => {
+    return {
+      content: ""
+    };
+  },
+  created() {
+    this.$http
+      .get(
+        "https://raw.githubusercontent.com/JulesRx/VueMovies/master/README.md"
+      )
+      .then(res => {
+        this.content = marked(res.data);
+      });
+  }
 };
 </script>
 
