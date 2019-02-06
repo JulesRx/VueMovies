@@ -3,7 +3,7 @@
     <div id="nav">
       <div class="logo">
         <router-link to="/">
-          <img src="@/static/logo.png" alt="Logo Vue" height="50">
+          <img src="@/static/logo.png" alt="Logo Vue">
         </router-link>
       </div>
 
@@ -31,6 +31,7 @@ export default {};
 
   .logo {
     img {
+      height: 50px;
       margin-bottom: 8px;
     }
   }
