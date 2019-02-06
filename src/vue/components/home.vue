@@ -26,25 +26,23 @@ export default {
     };
   },
   mounted() {
-    this.$http.get("https://www.omdbapi.com/?t=Interstellar").then(res => {
-      let imdb = res.data;
-      let movie = {
-        id: imdb.imdbID,
-        title: imdb.Title,
-        release: imdb.Released,
-        director: {
-          firstname: imdb.Director,
-          surname: "",
-          country: "",
-          brithdate: ""
-        },
-        genre: imdb.Genre
-      };
-      this.movies.push(movie);
-    });
-    // if (localStorage.movies) {
-    //   this.movies = localStorage.movies;
-    // }
+    this.movies = this.$store.state.movies;
+    // this.$http.get("https://www.omdbapi.com/?t=Interstellar").then(res => {
+    //   let imdb = res.data;
+    //   let movie = {
+    //     id: imdb.imdbID+this.movies.length,
+    //     title: imdb.Title,
+    //     release: imdb.Released,
+    //     director: {
+    //       firstname: imdb.Director,
+    //       surname: "",
+    //       country: "",
+    //       brithdate: ""
+    //     },
+    //     genre: imdb.Genre
+    //   };
+    //  store.commit("addMovie", movie);
+    // });
   }
 };
 </script>

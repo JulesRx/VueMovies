@@ -4,7 +4,7 @@
 
     <form @submit.prevent="addMovie()">
       <label for="title">Title :</label>
-      <input type="text" v-model="form.title" id="title">
+      <input type="text" v-model="form.title" id="title" required>
       <br>
 
       <label for="release">Release date :</label>
@@ -38,8 +38,22 @@ export default {
     };
   },
   methods: {
-    addMovie: () => {
-      console.log("Added");
+    addMovie() {
+      let movie = {
+        id: this.$store.length,
+        title: this.form.title,
+        release: this.form.release,
+        director: {
+          firstname: this.form.director_name,
+          surname: "",
+          country: "",
+          brithdate: ""
+        },
+        genre: this.form.genre
+      };
+
+      this.$store.commit("addMovie", movie);
+      this.$router.push({ name: "Home" });
     }
   }
 };

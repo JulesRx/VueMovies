@@ -1,23 +1,25 @@
 {
   "name": "vue-movies",
-  "description": "Projet DAWIN - Listes de films en NodeJs et VueJs",
   "version": "0.1.0",
+  "private": true,
+  "description": "Projet DAWIN - Listes de films en NodeJs et VueJs",
   "author": {
     "name": "Jules Raffoux",
     "email": "jules.raffoux@etu.u-bordeaux.fr",
     "url": "https://julesrx.fr"
   },
-  "private": true,
   "scripts": {
-    "start": "npm run serve",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "start": "npm run serve"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "normalize.css": "^8.0.1",
     "vue": "^2.5.22",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
+    "vuex-persist": "^2.0.0"
   },
   "devDependencies": {
     "@vue/cli-service": "^3.4.0",
