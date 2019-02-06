@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Home from '@/vue/components/home.vue'
 import About from '@/vue/components/about.vue'
 import MovieAdd from '@/vue/components/movie/movie-add.vue'
+import MovieDetails from '@/vue/components/movie/movie-details.vue'
 import MovieEdit from '@/vue/components/movie/movie-edit.vue'
 
 Vue.use(Router)
@@ -14,6 +15,7 @@ export default new Router({
   routes: [
     { path: '/', name: 'Home', component: Home },
     { path: '/movie/add', name: 'MovieCreate', component: MovieAdd },
+    { path: '/movie/:id', name: 'MovieDetails', component: MovieDetails },
     { path: '/movie/:id/edit', name: 'MovieEdit', component: MovieEdit },
     { path: '/about', name: 'About', component: About },
   ]

@@ -84,7 +84,6 @@ label {
   }
 }
 input {
-  // display: block;
   margin-right: 5px;
   min-width: 200px;
 }

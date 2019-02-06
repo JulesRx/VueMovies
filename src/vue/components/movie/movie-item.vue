@@ -1,13 +1,6 @@
 <template>
   <li class="movie-item">
-    <router-link :to="{name:'MovieEdit', params:{id:movie.id}}">
-      <!-- {{ movie.title }} -->
-      <!-- <span
-        class="director"
-        v-if="movie.director.length"
-      >directed by {{ movie.director.firstname }}</span> -->
-      {{ movie }}
-    </router-link>
+    <router-link :to="{name:'MovieDetails', params:{id:movie.id}}">{{ movie }}</router-link>
   </li>
 </template>
 

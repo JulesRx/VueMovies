@@ -30,8 +30,6 @@
 
         <button type="submit">Save</button>
       </form>
-
-      <button type="button" @click="deleteMovie()">Delete</button>
     </template>
   </div>
 </template>
@@ -62,18 +60,10 @@ export default {
       this.movie.genre = this.form.genre;
       this.movie.director = this.form.director;
 
-      this.$router.push({ name: "Home" });
-    },
-    deleteMovie() {
-      if (
-        confirm("Are you sure you want to delete " + this.movie.title + " ?")
-      ) {
-        let index = this.$store.state.movies.indexOf(this.movie);
-        if (index > -1) {
-          this.$store.state.movies.splice(index, 1);
-          this.$router.push({ name: "Home" });
-        }
-      }
+      this.$router.push({
+        name: "MovieDetails",
+        params: { id: this.movie.id }
+      });
     }
   },
   created() {
@@ -82,18 +72,17 @@ export default {
       return m.id == id;
     });
 
-    this.form.title = this.movie.title;
-    this.form.release = this.movie.release;
-    this.form.genre = this.movie.genre;
-    this.form.director = this.movie.director;
+    if (this.movie) {
+      this.form.title = this.movie.title;
+      this.form.release = this.movie.release;
+      this.form.genre = this.movie.genre;
+      this.form.director = this.movie.director;
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.not-found {
-  color: red;
-}
 input {
   display: block;
 }
