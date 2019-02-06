@@ -10,6 +10,8 @@
       <router-link to="/">Home</router-link>
       <span class="separator">|</span>
       <router-link to="/about">About</router-link>
+      <span class="separator">|</span>
+      <a href="https://github.com/JulesRx/VueMovies">GitHub</a>
     </div>
     <main>
       <router-view/>
@@ -23,6 +25,10 @@ export default {};
 
 <style lang="scss" scoped>
 #nav {
+  a {
+    text-decoration: none;
+  }
+
   .logo {
     img {
       margin-bottom: 8px;
