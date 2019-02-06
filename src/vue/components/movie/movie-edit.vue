@@ -5,27 +5,27 @@
     <template v-else>
       <h1>Editing movie "{{ movie.title }}"</h1>
 
-      <form @submit.prevent="$router.push({name:'Home'})">
+      <form @submit.prevent="editMovie()">
         <label for="title" class="block">Title :</label>
-        <input type="text" v-model="movie.title" id="title" required>
+        <input type="text" v-model="form.title" id="title" required>
 
         <label for="release" class="block">Release date :</label>
-        <input type="number" v-model="movie.release" id="release">
+        <input type="number" v-model="form.release" id="release">
 
         <label for="genre" class="block">Genre :</label>
-        <input type="text" v-model="movie.genre" id="genre">
+        <input type="text" v-model="form.genre" id="genre">
 
         <fieldset>
           <legend>Director :</legend>
           <label class="block">Name :</label>
-          <input type="text" v-model="movie.director.firstname" placeholder="Firstname">
-          <input type="text" v-model="movie.director.lastname" placeholder="Lastname">
+          <input type="text" v-model="form.director.firstname" placeholder="Firstname">
+          <input type="text" v-model="form.director.lastname" placeholder="Lastname">
 
           <label for="director_country" class="block">Country :</label>
-          <input type="text" v-model="movie.director.country" id="director_country">
+          <input type="text" v-model="form.director.country" id="director_country">
 
           <label for="director_birthdate" class="block">Birthdate :</label>
-          <input type="date" v-model="movie.director.birthdate" id="director_birthdate">
+          <input type="date" v-model="form.director.birthdate" id="director_birthdate">
         </fieldset>
 
         <button type="submit">Save</button>
@@ -41,10 +41,29 @@ export default {
   name: "MovieEdit",
   data: () => {
     return {
-      movie: {}
+      movie: {},
+      form: {
+        title: "",
+        release: "",
+        genre: "",
+        director: {
+          firstname: "",
+          lastname: "",
+          country: "",
+          birthdate: ""
+        }
+      }
     };
   },
   methods: {
+    editMovie() {
+      this.movie.title = this.form.title;
+      this.movie.release = this.form.release;
+      this.movie.genre = this.form.genre;
+      this.movie.director = this.form.director;
+
+      this.$router.push({ name: "Home" });
+    },
     deleteMovie() {
       if (
         confirm("Are you sure you want to delete " + this.movie.title + " ?")
@@ -62,6 +81,11 @@ export default {
     this.movie = this.$store.state.movies.find(m => {
       return m.id == id;
     });
+
+    this.form.title = this.movie.title;
+    this.form.release = this.movie.release;
+    this.form.genre = this.movie.genre;
+    this.form.director = this.movie.director;
   }
 };
 </script>
