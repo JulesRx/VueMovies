@@ -21,7 +21,7 @@ body {
 
     a {
       font-weight: bold;
-      color: $text-color;
+      color: inherit;
 
       &.router-link-exact-active {
         color: $link-color;
