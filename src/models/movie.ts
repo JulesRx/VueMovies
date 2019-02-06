@@ -5,5 +5,5 @@ export class Movie {
   title: string;
   release: number;
   director: Director
-  type: string;
+  genre: string;
 }

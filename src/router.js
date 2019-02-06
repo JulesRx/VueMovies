@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Home from '@/vue/components/home.vue'
 import About from '@/vue/components/about.vue'
+import MovieAdd from '@/vue/components/movie/movie-add.vue'
 
 Vue.use(Router)
 
@@ -11,6 +12,7 @@ export default new Router({
   mode: process.env.NODE_ENV === 'production' ? 'hash' : 'history',
   routes: [
     { path: '/', name: 'Home', component: Home },
+    { path: '/movie/add', name: 'MovieCreate', component: MovieAdd },
     { path: '/about', name: 'About', component: About },
   ]
 })
