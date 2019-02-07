@@ -122,7 +122,7 @@ export default {
     },
     addMovie() {
       let movie = {
-        id: this.$store.state.movies ? this.$store.state.movies.length + 1 : 1,
+        id: Date.now(),
         title: this.form.title,
         release: this.form.release,
         genre: this.form.genre,
