@@ -15,6 +15,9 @@
         <label for="genre" class="block">Genre :</label>
         <input type="text" v-model="form.genre" id="genre">
 
+        <label for="poster" class="block">Poster :</label>
+        <input type="file" id="poster">
+
         <fieldset>
           <legend>Director :</legend>
           <label class="block">Name :</label>
@@ -44,6 +47,7 @@ export default {
         title: "",
         release: "",
         genre: "",
+        poster: "",
         director: {
           firstname: "",
           lastname: "",
@@ -58,6 +62,7 @@ export default {
       this.movie.title = this.form.title;
       this.movie.release = this.form.release;
       this.movie.genre = this.form.genre;
+      // this.movie.poster=this.form.poster;
       this.movie.director = this.form.director;
 
       this.$router.push({
@@ -76,6 +81,7 @@ export default {
       this.form.title = this.movie.title;
       this.form.release = this.movie.release;
       this.form.genre = this.movie.genre;
+      this.form.poster = this.movie.poster;
       this.form.director = this.movie.director;
     }
   }
