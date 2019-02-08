@@ -1,10 +1,12 @@
 <template>
-  <div class="movie-item"></div>
+  <div class="home"></div>
 </template>
 
 <script>
 export default {
-  props: ["movie"]
+  data: () => {
+    return {};
+  }
 };
 </script>
 
