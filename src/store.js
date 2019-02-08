@@ -4,8 +4,9 @@ import VuexPersist from 'vuex-persist'
 
 const vuexPersist = new VuexPersist({
   key: 'app',
+  // storage: sessionStorage,
   storage: localStorage
-})
+});
 
 Vue.use(Vuex)
 
