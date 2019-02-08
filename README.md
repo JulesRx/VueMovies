@@ -1,6 +1,6 @@
 # VueMovies
 
-Projet DAWIN, listes de films en NodeJs et VueJs généré avec [VueCLI](https://cli.vuejs.org).
+Projet DAWIN, listes de films en NodeJs et [Vue](https://vuejs.org/).
 
 ## Spécifications
 
