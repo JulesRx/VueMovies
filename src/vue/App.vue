@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <div class="logo">
-        <router-link to="/">
+        <router-link :to="{ name: 'home' }">
           <img src="vue.png" alt="Logo Vue">
         </router-link>
       </div>

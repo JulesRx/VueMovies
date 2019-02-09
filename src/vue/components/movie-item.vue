@@ -1,13 +1,15 @@
 <template>
   <div class="movie-item">
-    <div class="poster">
-      <img :src="movie.poster?movie.poster:'no-poster.png'" :alt="movie.title">
-    </div>
-    <h3>{{ movie.title }} ({{ movie.year }})</h3>
-    <p>{{ movie.genre }}</p>
-    <p
-      v-if="movie.director"
-    >Directed by {{ movie.director.name }} ({{ movie.director.nationality }}, {{ movie.director.birthdate }})</p>
+    <router-link :to="{ name: 'movie-details', params: {id: movie.id} }">
+      <div class="poster">
+        <img :src="movie.poster?movie.poster:'no-poster.png'" :alt="movie.title">
+      </div>
+      <h3>{{ movie.title }} ({{ movie.year }})</h3>
+      <p>{{ movie.genre }}</p>
+      <p
+        v-if="movie.director"
+      >Directed by {{ movie.director.name }} ({{ movie.director.nationality }}, {{ movie.director.birthdate }})</p>
+    </router-link>
   </div>
 </template>
 
@@ -21,6 +23,12 @@ export default {
 .movie-item {
   display: block;
   max-width: 340px;
+  margin: 0 auto;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
   .poster {
     text-align: center;

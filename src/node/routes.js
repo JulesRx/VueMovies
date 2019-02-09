@@ -8,7 +8,7 @@ api.route('/movies').get((req, res, next) => {
   res.json(MOVIES);
 });
 
-api.route('/movie/:id').get((res, req, next) => {
+api.route('/movie/:id').get((req, res, next) => {
   var movie = MOVIES.find(m => m.id == req.params.id);
 
   if (!movie)
