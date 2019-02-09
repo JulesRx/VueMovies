@@ -2,6 +2,7 @@
   "name": "vue-movies",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "description": "Projet DAWIN - Listes de films en NodeJs et VueJs",
   "author": {
     "name": "Jules Raffoux",
