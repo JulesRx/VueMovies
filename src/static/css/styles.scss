@@ -1,3 +1,49 @@
+@import "~normalize.css";
+@import "./imports";
+
+@import url("//fonts.googleapis.com/css?family=Roboto");
+
 body {
-  color: red;
+  font-family: "Roboto", sans-serif;
+  color: $text-color;
+
+  a {
+    color: $link-color;
+  }
+
+  .not-found {
+    color: red;
+  }
+
+  #nav {
+    text-align: center;
+    padding: 30px;
+
+    a {
+      text-decoration: none;
+      font-weight: bold;
+      color: inherit;
+
+      &.router-link-exact-active {
+        color: $link-color;
+      }
+    }
+
+    .logo {
+      img {
+        height: 50px;
+        margin-bottom: 8px;
+      }
+    }
+
+    .separator {
+      margin: 0 4px;
+    }
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
 }

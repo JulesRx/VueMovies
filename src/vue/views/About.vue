@@ -1,13 +1,14 @@
 <template>
-  <div class="app"></div>
+  <div class="about"></div>
 </template>
 
 <script>
 export default {
   data: () => {
-    return {
-      title: "VueMovies"
-    };
+    return {};
   }
 };
 </script>
+
+<style lang="scss" scoped>
+</style>
