@@ -7,9 +7,10 @@
     "name": "Jules Raffoux",
     "email": "jules.raffoux@etu.u-bordeaux.fr"
   },
-  "main": "node/app.js",
+  "main": "src/node/app.js",
   "scripts": {
-    "start": "node src/node/app.js"
+    "start": "npm install && node_modules/.bin/webpack --progress --hide-modules && node src/node/app.js",
+    "dev": "node_modules/.bin/webpack --progress --hide-modules && node src/node/app.js"
   },
   "dependencies": {
     "axios": "^0.18.0",

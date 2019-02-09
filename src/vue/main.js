@@ -3,6 +3,8 @@ import Vuex from 'vuex';
 import App from './App.vue';
 import router from './routes.js';
 
+import '../static/css/styles.scss';
+
 import MovieItemComponent from './components/movie-item.vue';
 
 const axios = require('axios');
