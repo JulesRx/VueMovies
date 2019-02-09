@@ -5,41 +5,33 @@
   "description": "Projet DAWIN - Listes de films en NodeJs et VueJs",
   "author": {
     "name": "Jules Raffoux",
-    "email": "jules.raffoux@etu.u-bordeaux.fr",
-    "url": "https://julesrx.fr"
+    "email": "jules.raffoux@etu.u-bordeaux.fr"
   },
+  "main": "node/app.js",
   "scripts": {
-    "start": "node src/node/app.js",
-    "watch": "node node_modules/nodemon/bin/nodemon src/node/app.js"
+    "start": "node src/node/app.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "multer": "^1.4.1",
-    "vue": "^2.6.3",
-    "vue-axios": "^2.1.4",
+    "vue": "^2.6.4",
     "vue-router": "^3.0.2",
-    "vue-star-rating": "^1.6.1",
     "vuex": "^3.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.5",
-    "babel-preset-env": "^1.7.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
-    "css-loader": "^2.1.0",
-    "file-loader": "^3.0.1",
-    "node-sass": "^4.11.0",
-    "nodemon": "^1.18.10",
-    "sass-loader": "^7.1.0",
-    "vue-loader": "^15.6.2",
-    "vue-template-compiler": "^2.6.3",
-    "webpack": "^4.29.3",
-    "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.14"
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.4",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "vue-loader": "^15.4.2",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
   }
 }

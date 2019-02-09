@@ -30,5 +30,5 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res, next) => {
-  res.sendFile(path.resolve('src/public/index.html'));
+  res.sendFile(path.resolve('src/dist/index.html'));
 });
