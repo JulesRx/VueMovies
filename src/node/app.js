@@ -5,9 +5,42 @@ var parser = require('body-parser');
 var port = process.env.PORT || 8080;
 
 global.MOVIES = [
-  {},
-  {},
-  {}
+  {
+    id: 1549289040,
+    title: 'The Truman Show',
+    year: 1998,
+    director: {
+      name: 'Peter Weir',
+      nationality: 'Australian',
+      birthdate: '1944-08-21'
+    },
+    poster: null,
+    genre: 'Drama'
+  },
+  {
+    id: 1549289100,
+    title: 'Batman v Superman: Dawn of Justice',
+    year: 2016,
+    director: {
+      name: 'Zack Snyder',
+      nationality: 'American',
+      birthdate: '1966-03-01'
+    },
+    poster: null,
+    genre: 'Superhero',
+  },
+  {
+    id: 1549289160,
+    title: 'Annihilation',
+    year: 2018,
+    director: {
+      name: 'Alex Garland',
+      nationality: 'English',
+      birthdate: '1970-05-26'
+    },
+    poster: null,
+    genre: 'Science Fiction'
+  }
 ]
 
 var app = express();
@@ -21,6 +54,8 @@ app.listen(port);
 console.log('App listening on port ' + port);
 
 var api = require('./routes.js');
+app.use('/api', api);
+
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:' + port);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

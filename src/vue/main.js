@@ -14,7 +14,29 @@ Vue.component('movie-item', MovieItemComponent);
 
 Vue.use(Vuex);
 var store = new Vuex.Store({
-
+  state: {
+    movies: []
+  },
+  mutations: {
+    movies(state, movies) {
+      state.movies = movies;
+    },
+    movie(state, movie) {
+      state.movie = movie;
+    },
+  },
+  actions: {
+    getMovies(context) {
+      axios.get('/api/movies').then((res) => {
+        context.commit('movies', res.data);
+      })
+    },
+    getMovie(context, id) {
+      axios.get('/api/movies/' + id).then((res) => {
+        context.commit('movie', res.data);
+      })
+    },
+  }
 });
 
 const app = new Vue({
@@ -23,6 +45,10 @@ const app = new Vue({
   store: store,
   render: h => h(App),
   mounted() {
-    console.log('Mounted !');
+    this.$store.dispatch('getMovies');
+
+    if (this.$route.params.id !== undefined) {
+      this.$store.dispatch('getMovie', this.$route.params.id);
+    }
   }
 });

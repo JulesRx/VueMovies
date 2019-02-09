@@ -7,9 +7,9 @@
         </router-link>
       </div>
 
-      <router-link to="/">Home</router-link>
+      <router-link :to="{ name: 'home' }">Home</router-link>
       <span class="separator">|</span>
-      <router-link to="/about">About</router-link>
+      <router-link :to="{ name: 'about' }">About</router-link>
       <span class="separator">|</span>
       <a href="https://github.com/JulesRx/VueMovies">GitHub</a>
     </div>
