@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
+
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {
   entry: './src/vue/main.js',
@@ -36,7 +38,8 @@ const config = {
     ]
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new CopyWebpackPlugin(['src/static',], {})
   ]
 }
 
