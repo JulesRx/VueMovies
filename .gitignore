@@ -1,3 +1,4 @@
 /node_modules
 /src/static/uploads
+/src/dist/build.js
 .env
