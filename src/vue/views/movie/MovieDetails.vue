@@ -8,6 +8,7 @@
       <h1>{{ movie.title }} ({{ movie.year }})</h1>
       <img :src="movie.poster?movie.poster:'no-poster.png'" :alt="movie.title">
       <p>{{ movie.genre }}, directed by {{ movie.director.name }}, {{ movie.director.nationality }} and born the {{ movie.director.birthdate }}.</p>
+      <button type="button" @click="deleteMovie()">Delete</button>
     </div>
   </div>
 </template>
@@ -23,14 +24,26 @@ export default {
     }
   },
   created() {
-    this.fetchMovie();
+    this.getMovie();
   },
   watch: {
-    $route: "fetchMovie"
+    $route: "getMovie"
   },
   methods: {
-    fetchMovie() {
+    getMovie() {
       this.$store.dispatch("getMovieAPI", this.$route.params.id);
+    },
+    deleteMovie() {
+      if (confirm("Are you sure you want to delete this movie ?")) {
+        this.$store
+          .dispatch("deleteMovieAPI", this.movie.id)
+          .then(() => {
+            this.$router.push({ name: "home" });
+          })
+          .catch(() => {
+            console.error("Cannot delete movie");
+          });
+      }
     }
   }
 };
