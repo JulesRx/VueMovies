@@ -11,7 +11,7 @@
   "main": "src/node/app.js",
   "scripts": {
     "start": "npm install && node_modules/.bin/webpack --progress --hide-modules && node src/node/app.js",
-    "dev": "node_modules/.bin/webpack --progress --hide-modules && node src/node/app.js",
+    "dev": "node_modules/.bin/webpack --progress --hide-modules --watch",
     "build": "node_modules/.bin/webpack"
   },
   "dependencies": {
@@ -38,6 +38,7 @@
     "vue-loader": "^15.4.2",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1"
+    "webpack-dev-server": "^2.9.1",
+    "webpack-shell-plugin": "^0.5.0"
   }
 }
