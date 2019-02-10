@@ -8,6 +8,8 @@
       <h1>{{ movie.title }} ({{ movie.year }})</h1>
       <img :src="movie.poster?movie.poster:'no-poster.png'" :alt="movie.title">
       <p>{{ movie.genre }}, directed by {{ movie.director.name }}, {{ movie.director.nationality }} and born the {{ movie.director.birthdate }}.</p>
+
+      <router-link :to="{name: 'movie-edit', params:{ id: movie.id }}">Edit</router-link>
       <button type="button" @click="deleteMovie()">Delete</button>
     </div>
   </div>

@@ -6,11 +6,13 @@ import router from './routes.js';
 import '../static/css/styles.scss';
 
 import MovieItemComponent from './components/movie-item.vue';
+import MovieFormComponent from './components/movie-form.vue';
 
 const axios = require('axios');
 Vue.prototype.$http = axios;
 
 Vue.component('movie-item', MovieItemComponent);
+Vue.component('movie-form', MovieFormComponent);
 
 Vue.use(Vuex);
 var store = new Vuex.Store({
@@ -21,6 +23,12 @@ var store = new Vuex.Store({
   mutations: {
     updateMovies(state, movies) {
       state.movies = movies;
+    },
+    updateMovie(state, movie) {
+      var index = state.movies.findIndex(m => m.id == movie.id);
+      if (index != -1) {
+        state.movies[index] = movie;
+      }
     },
     updateMovieSelected(state, movie) {
       state.movie = movie;
@@ -36,12 +44,32 @@ var store = new Vuex.Store({
     getMoviesAPI(context) {
       axios.get('/api/movies').then((res) => {
         context.commit('updateMovies', res.data);
-      })
+      });
     },
     getMovieAPI(context, id) {
       axios.get('/api/movie/' + id).then((res) => {
         context.commit('updateMovieSelected', res.data);
-      })
+      });
+    },
+    updateMovieAPI(context, params) {
+      return new Promise((resolve, reject) => {
+        var data = new FormData();
+        data.append('movie', JSON.stringify(params.movie));
+        data.append('poster', params.poster);
+
+        axios.put('/api/movie/' + params.movie.id, data)
+          .then(res => {
+            if (res.status == 200) {
+              context.commit('updateMovie', res.data);
+              resolve();
+            } else {
+              reject();
+            }
+          })
+          .catch(() => {
+            reject();
+          });
+      });
     },
     deleteMovieAPI(context, id) {
       return new Promise((resolve, reject) => {
@@ -56,9 +84,9 @@ var store = new Vuex.Store({
           })
           .catch(() => {
             reject();
-          })
-      })
-    }
+          });
+      });
+    },
   }
 });
 
@@ -70,7 +98,7 @@ const app = new Vue({
   mounted() {
     this.$store.dispatch('getMoviesAPI');
 
-    if (this.$route.params.id !== undefined) {
+    if (this.$route.params.id != undefined) {
       this.$store.dispatch('getMovieAPI', this.$route.params.id);
     }
   }

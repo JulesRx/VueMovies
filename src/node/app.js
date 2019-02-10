@@ -47,23 +47,27 @@ var app = express();
 
 app.use(express.static(path.resolve('src/static')));
 app.use(express.static(path.resolve('src/dist')));
-app.use(parser.json());
+
 app.use(parser.urlencoded({ extended: true }));
-app.listen(port);
+app.use(parser.json());
 
-console.log('App listening on port ' + port);
-
+// Router Middleware
 var api = require('./routes.js');
 app.use('/api', api);
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:' + port);
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Headers', 'Accept, Origin, Content-Type');
+  res.setHeader('Content-Type', 'application/json');
 
   next();
 });
 
 app.get('/', (req, res, next) => {
   res.sendFile(path.resolve('src/dist/index.html'));
+});
+
+app.listen(port, () => {
+  console.log('App listening on port ' + port);
 });
