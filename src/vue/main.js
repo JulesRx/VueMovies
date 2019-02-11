@@ -24,14 +24,17 @@ var store = new Vuex.Store({
     updateMovies(state, movies) {
       state.movies = movies;
     },
+    updateMovieSelected(state, movie) {
+      state.movie = movie;
+    },
+    addMovie(state, movie) {
+      state.movies.push(movie);
+    },
     updateMovie(state, movie) {
       var index = state.movies.findIndex(m => m.id == movie.id);
       if (index != -1) {
         state.movies[index] = movie;
       }
-    },
-    updateMovieSelected(state, movie) {
-      state.movie = movie;
     },
     deleteMovie(state, id) {
       var index = state.movies.findIndex(m => m.id == id);
@@ -50,6 +53,26 @@ var store = new Vuex.Store({
       axios.get('/api/movie/' + id).then((res) => {
         context.commit('updateMovieSelected', res.data);
       });
+    },
+    addMovieAPI(context, params) {
+      return new Promise((resolve, reject) => {
+        var formData = new FormData();
+        formData.append('movie', JSON.stringify(params.movie));
+        formData.append('poster', params.poster);
+
+        axios.post('/api/movies', formData)
+          .then(response => {
+            if (response.status === 200) {
+              context.commit('addMovie', response.data);
+              resolve(response.data.id);
+            } else {
+              reject();
+            }
+          })
+          .catch(() => {
+            reject();
+          })
+      })
     },
     updateMovieAPI(context, params) {
       return new Promise((resolve, reject) => {

@@ -34,6 +34,18 @@ api.route('/movies').get((req, res, next) => {
   res.json(MOVIES);
 });
 
+api.route('/movies').post(upload.single('poster'), (req, res) => {
+  var newMovie = JSON.parse(req.body.movie);
+  newMovie.id = MOVIES[MOVIES.length - 1].id + 1;
+  newMovie.year = parseInt(newMovie.year);
+  if (req.file) {
+    newMovie.poster = 'uploads/' + req.file.filename;
+  }
+
+  MOVIES.push(newMovie);
+  res.json(newMovie);
+});
+
 api.route('/movie/:id').get((req, res, next) => {
   var movie = MOVIES.find(m => m.id == req.params.id);
 
