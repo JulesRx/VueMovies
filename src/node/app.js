@@ -15,7 +15,8 @@ global.MOVIES = [
       birthdate: '1944-08-21'
     },
     poster: null,
-    genre: 'Drama'
+    genre: 'Drama',
+    ratings: [5, 4, 3]
   },
   {
     id: 1549289100,
@@ -28,6 +29,7 @@ global.MOVIES = [
     },
     poster: null,
     genre: 'Superhero',
+    ratings: [2, 5, 4]
   },
   {
     id: 1549289160,
@@ -39,7 +41,8 @@ global.MOVIES = [
       birthdate: '1970-05-26'
     },
     poster: null,
-    genre: 'Science Fiction'
+    genre: 'Science Fiction',
+    ratings: [5, 5, 2]
   }
 ]
 

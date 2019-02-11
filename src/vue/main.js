@@ -8,6 +8,9 @@ import '../static/css/styles.scss';
 import MovieItemComponent from './components/movie-item.vue';
 import MovieFormComponent from './components/movie-form.vue';
 
+import rate from 'vue-rate';
+Vue.use(rate)
+
 const axios = require('axios');
 Vue.prototype.$http = axios;
 
@@ -36,6 +39,12 @@ var store = new Vuex.Store({
         state.movies[index] = movie;
       }
     },
+    rateMovie(state, params) {
+      var index = state.movies.findIndex(m => m.id == params.id);
+      if (index == -1) {
+        state.movies[index].ratings.push(params.rating);
+      }
+    },
     deleteMovie(state, id) {
       var index = state.movies.findIndex(m => m.id == id);
       if (index != -1) {
@@ -61,10 +70,10 @@ var store = new Vuex.Store({
         formData.append('poster', params.poster);
 
         axios.post('/api/movies', formData)
-          .then(response => {
-            if (response.status === 200) {
-              context.commit('addMovie', response.data);
-              resolve(response.data.id);
+          .then(res => {
+            if (res.status === 200) {
+              context.commit('addMovie', res.data);
+              resolve(res.data.id);
             } else {
               reject();
             }
@@ -93,6 +102,23 @@ var store = new Vuex.Store({
             reject();
           });
       });
+    },
+    rateMovieAPI(context, params) {
+      return new Promise((resolve, reject) => {
+        console.log(params);
+        axios.post('/api/movie/' + params.id + '/rate', { rating: params.rating })
+          .then(res => {
+            if (res.status === 204) {
+              context.commit('rateMovie', params);
+              resolve();
+            } else {
+              reject();
+            }
+          })
+          .catch(() => {
+            reject();
+          })
+      })
     },
     deleteMovieAPI(context, id) {
       return new Promise((resolve, reject) => {

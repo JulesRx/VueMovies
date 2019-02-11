@@ -78,6 +78,17 @@ api.route('/movie/:id').put(upload.single('poster'), (req, res, next) => {
   }
 });
 
+api.route('/movie/:id/rate').post((req, res, next) => {
+  var movie = MOVIES.find(m => m.id == req.params.id)
+
+  if (!movie) {
+    res.status(404).send({ error: 'Movie not found.' });
+  } else {
+    movie.ratings.push(req.body.rating);
+    res.status(204).send(null);
+  }
+});
+
 api.route('/movie/:id/delete').delete((req, res, next) => {
   var index = MOVIES.findIndex(m => m.id == req.params.id);
 
