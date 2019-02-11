@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var parser = require('body-parser');
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 4200;
 
 global.MOVIES = [
   {
