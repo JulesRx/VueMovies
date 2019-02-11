@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <h1>Movies</h1>
-    <div class="movies">
-      <movie-item v-for="movie in movies" :key="movie.id" :movie="movie"></movie-item>
+    <div class="movies row">
+      <movie-item v-for="movie in movies" :key="movie.id" :movie="movie" class="col-md-4"></movie-item>
     </div>
   </div>
 </template>
@@ -19,11 +19,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.movies{
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-</style>

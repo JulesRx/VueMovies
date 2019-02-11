@@ -2,7 +2,7 @@
   <div class="movie-item">
     <router-link :to="{ name: 'movie-details', params: {id: movie.id} }">
       <div class="poster">
-        <img :src="movie.poster?movie.poster:'no-poster.png'" :alt="movie.title">
+        <img :src="movie.poster?movie.poster:'no-poster.png'" :alt="movie.title" class="img-fluid">
       </div>
       <h3>{{ movie.title }} ({{ movie.year }})</h3>
       <p>{{ movie.genre }}</p>
@@ -21,10 +21,6 @@ export default {
 
 <style lang="scss" scoped>
 .movie-item {
-  display: block;
-  max-width: 340px;
-  margin: 0 auto;
-
   a {
     color: inherit;
     text-decoration: none;
@@ -32,10 +28,6 @@ export default {
 
   .poster {
     text-align: center;
-
-    img {
-      width: 300px;
-    }
   }
 }
 </style>

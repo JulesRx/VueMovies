@@ -13,7 +13,7 @@
       <span class="separator">|</span>
       <a href="https://github.com/JulesRx/VueMovies">GitHub</a>
     </div>
-    <main>
+    <main class="container">
       <router-view/>
     </main>
   </div>

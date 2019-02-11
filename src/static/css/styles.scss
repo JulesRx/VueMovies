@@ -1,19 +1,11 @@
-@import "~normalize.css";
+// @import "~normalize.css";
 @import "./imports";
+@import "node_modules/bootstrap/scss/bootstrap.scss";
 
 @import url("//fonts.googleapis.com/css?family=Roboto");
 
 body {
-  font-family: "Roboto", sans-serif;
   color: $text-color;
-
-  a {
-    color: $link-color;
-  }
-
-  .not-found {
-    color: red;
-  }
 
   #nav {
     text-align: center;
@@ -39,11 +31,5 @@ body {
     .separator {
       margin: 0 4px;
     }
-  }
-
-  main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 10px;
   }
 }
