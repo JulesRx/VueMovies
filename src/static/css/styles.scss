@@ -2,10 +2,9 @@
 @import "./imports";
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
-@import url("//fonts.googleapis.com/css?family=Roboto");
-
 body {
   color: $text-color;
+  padding-bottom: 12px;
 
   #nav {
     text-align: center;

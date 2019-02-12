@@ -4,19 +4,68 @@
       <p>Movie not found</p>
     </div>
 
-    <div v-else>
-      <h1>{{ movie.title }} ({{ movie.year }})</h1>
-      <img :src="movie.poster?movie.poster:'no-poster.png'" :alt="movie.title">
-      <p>{{ movie.genre }}, directed by {{ movie.director.name }}, {{ movie.director.nationality }} and born the {{ movie.director.birthdate }}.</p>
+    <template v-else>
+      <h1>{{ movie.title }}</h1>
 
-      <span v-if="!rated">Rate this movie :
-        <rate :length="5" v-model="rating" @after-rate="rateMovie()"/>
-      </span>
-      <p>Grade : {{ rate }}/5 (on {{ movie.ratings.length }} ratings)</p>
+      <div class="row">
+        <div class="col-md-4 poster">
+          <img
+            :src="movie.poster?movie.poster:'no-poster.png'"
+            :alt="movie.title"
+            class="img-fluid"
+          >
+        </div>
+        <div class="col-md-8 details">
+          <h4>About this movie</h4>
+          <div class="about">
+            <p>
+              <b>Release :</b>
+              {{ movie.year }}
+            </p>
+            <p>
+              <b>Genre :</b>
+              {{ movie.genre }}
+            </p>
 
-      <router-link :to="{name: 'movie-edit', params:{ id: movie.id }}">Edit</router-link>
-      <button type="button" @click="deleteMovie()">Delete</button>
-    </div>
+            <p>
+              <b>Director :</b>
+              {{ movie.director.name }}, {{ movie.director.nationality }} and born the {{ movie.director.birthdate }}.
+            </p>
+          </div>
+
+          <h4>Ratings</h4>
+          <div class="ratings">
+            <p>
+              <b>Current score :</b>
+              {{ rate }}/5 (based on {{ movie.ratings.length }} ratings)
+            </p>
+
+            <b>Rate this movie :</b>
+            <template v-if="!rated">
+              <br>
+              <p>Your score :
+                <rate
+                  :length="5"
+                  v-model="rating"
+                  @after-rate="rateMovie()"
+                  style="display:inline"
+                />
+              </p>
+            </template>
+            <p v-else>Thank you !</p>
+          </div>
+
+          <h4>Options</h4>
+          <div class="options">
+            <router-link
+              :to="{name: 'movie-edit', params:{ id: movie.id }}"
+              class="btn btn-primary"
+            >Edit</router-link>
+            <button type="button" class="btn btn-secondary" @click="deleteMovie()">Delete</button>
+          </div>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -85,8 +134,31 @@ export default {
 
 <style lang="scss" scoped>
 .movie-details {
-  img {
-    width: 300px;
+  .poster {
+    margin-bottom: 12px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .details {
+    h4 {
+      margin-top: 0.6rem;
+      font-size: 1.55rem;
+    }
+
+    p {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .options{
+      .btn{
+        margin-top: 12px;
+        margin-right: 4px;
+      }
+    }
   }
 }
 </style>
