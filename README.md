@@ -1,12 +1,8 @@
 # VueMovies
 
-Projet DAWIN - Listes de films en NodeJs et VueJs
+Projet DAWIN, listes de films en NodeJs et [Vue](https://vuejs.org/).
 
 ## Spécifications
-
-https://scleriot.github.io/web-dawin/project/alternants.html
-
-## Rendu
 
 - Le projet est à rendre pour le dimanche 17 Février 2019
 - Le sujet est disponible à cette adresse : https://scleriot.github.io/web-dawin/project/alternants.html
