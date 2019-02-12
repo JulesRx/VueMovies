@@ -1,15 +1,16 @@
 <template>
   <div class="movie-item">
-    <router-link :to="{ name: 'movie-details', params: {id: movie.id} }">
-      <div class="poster">
-        <img :src="movie.poster?movie.poster:'no-poster.png'" :alt="movie.title" class="img-fluid">
+    <div class="card movie-card">
+      <img :src="movie.poster ? movie.poster : 'no-poster.png'" class="card-img-top" :alt="movie.title">
+      <div class="card-body">
+        <h5 class="card-title">{{ movie.title }}</h5>
+        <p class="card-text">Released in {{ movie.year }} and directed by {{ movie.director.name }}.</p>
+        <router-link
+          :to="{ name: 'movie-details', params: { id: movie.id }}"
+          class="btn btn-primary"
+        >More infos</router-link>
       </div>
-      <h3>{{ movie.title }} ({{ movie.year }})</h3>
-      <p>{{ movie.genre }}</p>
-      <p
-        v-if="movie.director"
-      >Directed by {{ movie.director.name }} ({{ movie.director.nationality }}, {{ movie.director.birthdate }})</p>
-    </router-link>
+    </div>
   </div>
 </template>
 
@@ -20,14 +21,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.movie-item {
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .poster {
-    text-align: center;
+.movie-card{
+  img{
+    max-height: 450px;
   }
 }
 </style>
