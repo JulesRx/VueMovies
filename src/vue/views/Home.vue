@@ -2,9 +2,22 @@
   <div class="home">
     <h1>Movies</h1>
 
-    <router-link :to="{name: 'movie-add'}">New movie</router-link>
-
-    <input type="text" v-model="search">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Search for a movie :</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Title, Year, Genre, Director..."
+            v-model="search"
+          >
+        </div>
+      </div>
+      <div class="col-md-6 text-right mb-3">
+        <router-link :to="{name: 'movie-add'}" class="btn btn-primary">New movie</router-link>
+      </div>
+    </div>
 
     <div class="movies row">
       <movie-item v-for="movie in movies" :key="movie.id" :movie="movie" class="col-md-4"></movie-item>

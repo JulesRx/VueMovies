@@ -1,7 +1,11 @@
 <template>
   <div class="movie-item">
     <div class="card movie-card">
-      <img :src="movie.poster ? movie.poster : 'no-poster.png'" class="card-img-top" :alt="movie.title">
+      <img
+        :src="movie.poster ? movie.poster : 'no-poster.png'"
+        class="card-img-top"
+        :alt="movie.title"
+      >
       <div class="card-body">
         <h5 class="card-title">{{ movie.title }}</h5>
         <p class="card-text">Released in {{ movie.year }} and directed by {{ movie.director.name }}.</p>
@@ -21,8 +25,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.movie-card{
-  img{
+.movie-card {
+  margin-bottom: 12px;
+
+  img {
     max-height: 450px;
   }
 }
