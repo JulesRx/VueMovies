@@ -1,37 +1,78 @@
 <template>
-  <form class="movie-form" enctype="multipart/form-data">
-    <label for="title">Titre</label>
-    <input type="text" id="title" v-model="movie.title">
-
-    <label for="year">Année</label>
-    <input type="number" id="year" v-model="movie.year">
-
-    <label for="genre">Genre</label>
-    <input type="text" id="genre" v-model="movie.genre">
-
-    <label for="poster">Poster</label>
-    <input
-      type="file"
-      ref="posterInput"
-      id="poster"
-      accept=".png, .jpg, .jpeg"
-      @change="processFile($event)"
-    >
-
-    <div class="form-group col-lg-6" v-if="movie.poster || preview">
-      <p>Poster actuel :</p>
-      <img :src="movie.poster || preview" alt="Poster actuel" height="100px">
+  <form class="movie-form" enctype="multipart/form-data" @submit="$emit('submitted');return false;">
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="title">Title</label>
+        <input type="text" id="title" class="form-control" required v-model="movie.title">
+      </div>
     </div>
 
-    <h3>Réalisateur</h3>
-    <label for="director_name">Nom</label>
-    <input type="text" id="director_name" v-model="movie.director.name">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="year">Year</label>
+        <input type="number" id="year" class="form-control" v-model="movie.year">
+      </div>
+      <div class="form-group col-md-8">
+        <label for="genre">Genre</label>
+        <input type="text" id="genre" class="form-control" v-model="movie.genre">
+      </div>
+    </div>
 
-    <label for="director_nationality">Nationalité</label>
-    <input type="text" id="director_nationality" v-model="movie.director.nationality">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="poster">Poster</label>
+        <input
+          type="file"
+          ref="posterInput"
+          id="poster"
+          class="form-control-file"
+          accept=".png, .jpg, .jpeg, .gif"
+          @change="processFile($event)"
+        >
+      </div>
 
-    <label for="director_birthdate">Date de naissance</label>
-    <input type="date" id="director_birthdate" v-model="movie.director.birthdate">
+      <div class="form-group col-md-6" v-if="movie.poster || preview">
+        <label>Poster preview :</label>
+        <img :src="movie.poster || preview" alt="Poster" class="img-fluid">
+      </div>
+    </div>
+
+    <h3>Director</h3>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="director_name">Name</label>
+        <input type="text" id="director_name" class="form-control" v-model="movie.director.name">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="director_nationality">Nationality</label>
+        <input
+          type="text"
+          id="director_nationality"
+          class="form-control"
+          v-model="movie.director.nationality"
+        >
+      </div>
+      <div class="form-group col-md-6">
+        <label for="director_birthdate">Birthdate</label>
+        <input
+          type="date"
+          id="director_birthdate"
+          class="form-control"
+          v-model="movie.director.birthdate"
+        >
+      </div>
+    </div>
+
+    <router-link
+      v-if="movie && movie.id"
+      :to="{ name: 'movie-details', params: { id: movie.id } }"
+      class="btn btn-secondary"
+    >Cancel</router-link>
+
+    <button type="submit" class="btn btn-primary float-right">Save</button>
   </form>
 </template>
 

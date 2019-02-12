@@ -4,11 +4,9 @@
 
     <p v-if="!movie">Movie not found</p>
 
-    <div v-else>
-      <movie-form :movie="movie" :poster="poster"></movie-form>
-      <router-link :to="{ name: 'movie-details', params: { id: movie.id } }">Cancel</router-link>
-      <button type="button" @click="updateMovie()">Save</button>
-    </div>
+    <template v-else>
+      <movie-form :movie="movie" :poster="poster" @submitted="updateMovie()"></movie-form>
+    </template>
   </div>
 </template>
 

@@ -1,8 +1,7 @@
 <template>
   <div class="movie-add">
-    <movie-form :movie="newMovie" :poster="newPoster"></movie-form>
-    <br>
-    <button type="button" @click="addMovie()">Add movie</button>
+    <h1>Add a new movie</h1>
+    <movie-form :movie="newMovie" :poster="newPoster" @submitted="addMovie()"></movie-form>
   </div>
 </template>
 
