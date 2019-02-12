@@ -24,28 +24,28 @@ var store = new Vuex.Store({
     movie: null
   },
   mutations: {
-    updateMovies(state, movies) {
+    UPDATE_MOVIES(state, movies) {
       state.movies = movies;
     },
-    updateMovieSelected(state, movie) {
+    UPDATE_MOVIES_SELECTED(state, movie) {
       state.movie = movie;
     },
-    addMovie(state, movie) {
+    ADD_MOVIE(state, movie) {
       state.movies.push(movie);
     },
-    updateMovie(state, movie) {
+    UPDATE_MOVIE(state, movie) {
       var index = state.movies.findIndex(m => m.id == movie.id);
       if (index != -1) {
         state.movies[index] = movie;
       }
     },
-    rateMovie(state, params) {
+    RATE_MOVIE(state, params) {
       var index = state.movies.findIndex(m => m.id == params.id);
       if (index == -1) {
         state.movies[index].ratings.push(params.rating);
       }
     },
-    deleteMovie(state, id) {
+    DELETE_MOVIE(state, id) {
       var index = state.movies.findIndex(m => m.id == id);
       if (index != -1) {
         state.movies.splice(index, 1);
@@ -55,12 +55,12 @@ var store = new Vuex.Store({
   actions: {
     getMoviesAPI(context) {
       axios.get('/api/movies').then((res) => {
-        context.commit('updateMovies', res.data);
+        context.commit('UPDATE_MOVIES', res.data);
       });
     },
     getMovieAPI(context, id) {
       axios.get('/api/movie/' + id).then((res) => {
-        context.commit('updateMovieSelected', res.data);
+        context.commit('UPDATE_MOVIES_SELECTED', res.data);
       });
     },
     addMovieAPI(context, params) {
@@ -72,7 +72,7 @@ var store = new Vuex.Store({
         axios.post('/api/movies', formData)
           .then(res => {
             if (res.status === 200) {
-              context.commit('addMovie', res.data);
+              context.commit('ADD_MOVIE', res.data);
               resolve(res.data.id);
             } else {
               reject();
@@ -92,7 +92,7 @@ var store = new Vuex.Store({
         axios.put('/api/movie/' + params.movie.id, data)
           .then(res => {
             if (res.status == 200) {
-              context.commit('updateMovie', res.data);
+              context.commit('UPDATE_MOVIE', res.data);
               resolve();
             } else {
               reject();
@@ -109,7 +109,7 @@ var store = new Vuex.Store({
         axios.post('/api/movie/' + params.id + '/rate', { rating: params.rating })
           .then(res => {
             if (res.status === 204) {
-              context.commit('rateMovie', params);
+              context.commit('RATE_MOVIE', params);
               resolve();
             } else {
               reject();
@@ -125,7 +125,7 @@ var store = new Vuex.Store({
         axios.delete('/api/movie/' + id + '/delete')
           .then(res => {
             if (res.status == 204) {
-              context.commit('deleteMovie', id);
+              context.commit('DELETE_MOVIE', id);
               resolve();
             } else {
               reject();
