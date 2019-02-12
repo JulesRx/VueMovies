@@ -19,9 +19,13 @@
       </div>
     </div>
 
-    <div class="movies row">
+    <div class="movies row" v-if="movies.length">
       <movie-item v-for="movie in movies" :key="movie.id" :movie="movie" class="col-md-4"></movie-item>
     </div>
+
+    <p v-else>There isn't any registered movie at the moment...
+      <router-link :to="{name: 'movie-add'}">Add a movie now !</router-link>
+    </p>
   </div>
 </template>
 
