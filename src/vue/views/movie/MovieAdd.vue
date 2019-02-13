@@ -29,10 +29,14 @@ export default {
   },
   methods: {
     addMovie() {
-      var params = { movie: this.newMovie, poster: this.newPoster.file };
-      this.$store.dispatch("addMovieAPI", params).then(id => {
-        this.$router.push({ name: "movie-details", params: { id: id } });
-      });
+      this.$store
+        .dispatch("addMovieAPI", {
+          movie: this.newMovie,
+          poster: this.newPoster.file
+        })
+        .then(id => {
+          this.$router.push({ name: "movie-details", params: { id: id } });
+        });
     }
   }
 };

@@ -136,6 +136,19 @@ var store = new Vuex.Store({
           });
       });
     },
+    posterOmdbAPI(context, title) {
+      return new Promise((resolve, reject) => {
+        axios.get('/api/omdb', { params: { title: title } })
+          .then(res => {
+            resolve(res.data);
+          })
+          .catch(err => {
+            if (err.response) {
+              resolve(err.response.data);
+            }
+          })
+      })
+    }
   }
 });
 

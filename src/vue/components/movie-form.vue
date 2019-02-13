@@ -1,5 +1,5 @@
 <template>
-  <form class="movie-form" enctype="multipart/form-data" @submit="$emit('submitted');return false;">
+  <form class="movie-form" enctype="multipart/form-data">
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="title">Title</label>
@@ -29,6 +29,14 @@
           accept=".png, .jpg, .jpeg, .gif"
           @change="processFile($event)"
         >
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          @click="posterOMDB($event)"
+          :disabled="searching"
+        >Search for IMBD's poster</button>
+        <span>{{ error }}</span>
       </div>
 
       <div class="form-group col-md-6" v-if="movie.poster || preview">
@@ -72,7 +80,7 @@
       class="btn btn-secondary"
     >Cancel</router-link>
 
-    <button type="submit" class="btn btn-primary float-right">Save</button>
+    <button type="button" class="btn btn-primary float-right" @click="$emit('submitted')">Save</button>
   </form>
 </template>
 
@@ -82,7 +90,9 @@ export default {
   data() {
     return {
       preview: null,
-      reader: new FileReader()
+      reader: new FileReader(),
+      searching: false,
+      error: ""
     };
   },
   methods: {
@@ -98,6 +108,22 @@ export default {
       if (this.poster.file) {
         this.reader.readAsDataURL(this.poster.file);
       }
+    },
+    posterOMDB() {
+      this.searching = true;
+      this.$store.dispatch("posterOmdbAPI", this.movie.title).then(res => {
+        this.searching = false;
+        if (res.error) {
+          this.error = res.error;
+        } else {
+          this.movie.poster = res.poster_url;
+
+          this.$refs.posterInput.value = "";
+          this.error = "";
+          this.poster.file = null;
+          this.preview = null;
+        }
+      });
     }
   }
 };

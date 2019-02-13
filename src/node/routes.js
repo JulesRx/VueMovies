@@ -73,6 +73,9 @@ api.route('/movie/:id').put(upload.single('poster'), (req, res, next) => {
     if (req.file != undefined) {
       movie.poster = 'uploads/' + req.file.filename;
     }
+    else {
+      movie.poster = uMovie.poster;
+    }
 
     res.json(movie);
   }
@@ -99,6 +102,19 @@ api.route('/movie/:id/delete').delete((req, res, next) => {
     MOVIES.splice(index, 1);
     res.status(204).send(null);
   }
+});
+
+api.route('/omdb').get((req, res, next) => {
+  var title = req.query.title.replace(' ', '+');
+  axios.get('https://www.omdbapi.com/', { params: { apikey: '8633b3c4', t: title } })
+    .then(response => {
+      if (response.data.Poster) {
+        res.status(200).send({ poster_url: response.data.Poster });
+      } else {
+        res.status(404).send({ error: 'Poster not found.' })
+      }
+    }
+    );
 });
 
 module.exports = api;
