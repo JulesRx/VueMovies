@@ -14,6 +14,7 @@ Projet DAWIN, listes de films en NodeJs et [Vue](https://vuejs.org/).
 - Le projet doit être rendu via un dépôt git
   - ne pas inclure le dossier node_modules et à avoir un fichier package.json qui contient bien toutes les dépendances
   - inclure un README avec le nom/prénom/email
+- Le projet doit se lancer avec la commande `npm install && node_modules/.bin/webpack --progress --hide-modules && node src/node/app.js`
 
 
 ## Contact

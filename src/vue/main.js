@@ -3,31 +3,31 @@ import Vuex from 'vuex';
 import App from './App.vue';
 import router from './routes.js';
 
-import '../static/css/styles.scss';
-
 import MovieItemComponent from './components/movie-item.vue';
 import MovieFormComponent from './components/movie-form.vue';
+
+import '../static/css/styles.scss';
 
 import rate from 'vue-rate';
 Vue.use(rate)
 
-const axios = require('axios');
+import axios from 'axios';
 Vue.prototype.$http = axios;
 
 Vue.component('movie-item', MovieItemComponent);
 Vue.component('movie-form', MovieFormComponent);
 
 Vue.use(Vuex);
-var store = new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     movies: [],
     movie: null
   },
   mutations: {
-    UPDATE_MOVIES(state, movies) {
+    GET_MOVIES(state, movies) {
       state.movies = movies;
     },
-    UPDATE_MOVIES_SELECTED(state, movie) {
+    GET_MOVIE_SELECTED(state, movie) {
       state.movie = movie;
     },
     ADD_MOVIE(state, movie) {
@@ -55,12 +55,12 @@ var store = new Vuex.Store({
   actions: {
     getMoviesAPI(context) {
       axios.get('/api/movies').then((res) => {
-        context.commit('UPDATE_MOVIES', res.data);
+        context.commit('GET_MOVIES', res.data);
       });
     },
     getMovieAPI(context, id) {
       axios.get('/api/movie/' + id).then((res) => {
-        context.commit('UPDATE_MOVIES_SELECTED', res.data);
+        context.commit('GET_MOVIE_SELECTED', res.data);
       });
     },
     addMovieAPI(context, params) {

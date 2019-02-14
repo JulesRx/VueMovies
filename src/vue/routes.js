@@ -11,7 +11,7 @@ import MovieEdit from './views/movie/MovieEdit.vue';
 Vue.use(VueRouter);
 
 export default new VueRouter({
-  // mode: process.env.NODE_ENV === 'production' ? 'hash' : 'history',
+  // mode: process.env.NODE_ENV === 'production' ? 'hash' : 'history', // Clean URL without the #
   routes: [
     { path: '/movie/add', component: MovieAdd, name: 'movie-add' },
     { path: '/movie/:id', component: MovieDetails, name: 'movie-details' },

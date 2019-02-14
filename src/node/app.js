@@ -51,6 +51,7 @@ var app = express();
 app.use(express.static(path.resolve('src/static')));
 app.use(express.static(path.resolve('src/dist')));
 
+// BodyParser Middleware
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 
@@ -60,7 +61,7 @@ app.use('/api', api);
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Accept, Origin, Content-Type');
   res.setHeader('Content-Type', 'application/json');
 

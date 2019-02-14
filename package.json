@@ -10,7 +10,7 @@
   },
   "main": "src/node/app.js",
   "scripts": {
-    "start": "npm install && node_modules/.bin/webpack --progress --hide-modules && node src/node/app.js",
+    "start": "node src/node/app.js",
     "dev": "node_modules/.bin/webpack --progress --hide-modules --watch --mode development",
     "build": "node_modules/.bin/webpack --mode production"
   },
