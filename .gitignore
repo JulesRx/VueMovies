@@ -1,5 +1,4 @@
 /node_modules
 /src/static/uploads/*
 !/src/static/uploads/.keep
-/src/dist
 .env
