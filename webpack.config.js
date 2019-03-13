@@ -3,9 +3,7 @@ const path = require('path');
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WebpackShellPlugin = require('webpack-shell-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const config = {
   entry: './src/vue/main.js',
@@ -22,7 +20,15 @@ const config = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader'
+        use: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader', //
+          'css-loader'
+        ]
       },
       {
         test: /\.scss$/,
@@ -49,23 +55,11 @@ const config = {
 
 module.exports = (env, argv) => {
   if (argv.mode === 'development') {
-    config.plugins.push(
-      new WebpackShellPlugin({ onBuildEnd: ['node src/node/app.js'] })
-    );
+    //
   }
 
   if (argv.mode === 'production') {
-    // ES6 issue
-    // config.plugins.push(
-    //   new UglifyJsPlugin({
-    //     uglifyOptions: {
-    //       compress: {
-    //         warnings: false
-    //       },
-    //       sourceMap: true
-    //     }
-    //   })
-    // );
+    //
   }
 
   return config;
