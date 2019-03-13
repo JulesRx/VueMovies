@@ -3,18 +3,34 @@
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="title">Title</label>
-        <input type="text" id="title" class="form-control" required v-model="movie.title">
+        <input
+          type="text"
+          id="title"
+          class="form-control"
+          required
+          v-model="movie.title"
+        />
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="year">Year</label>
-        <input type="number" id="year" class="form-control" v-model="movie.year">
+        <input
+          type="number"
+          id="year"
+          class="form-control"
+          v-model="movie.year"
+        />
       </div>
       <div class="form-group col-md-8">
         <label for="genre">Genre</label>
-        <input type="text" id="genre" class="form-control" v-model="movie.genre">
+        <input
+          type="text"
+          id="genre"
+          class="form-control"
+          v-model="movie.genre"
+        />
       </div>
     </div>
 
@@ -28,20 +44,22 @@
           class="form-control-file"
           accept=".png, .jpg, .jpeg, .gif"
           @change="processFile($event)"
-        >
+        />
 
         <button
           type="button"
           class="btn btn-primary"
           @click="posterOMDB($event)"
           :disabled="searching"
-        >Search for IMBD's poster</button>
+        >
+          Search for IMBD's poster
+        </button>
         <span>{{ error }}</span>
       </div>
 
-      <div class="form-group col-md-6" v-if="movie.poster || preview">
+      <div class="form-group col-md-6" v-if="movie.poster || preview">
         <label>Poster preview :</label>
-        <img :src="movie.poster || preview" alt="Poster" class="img-fluid">
+        <img :src="movie.poster || preview" alt="Poster" class="img-fluid" />
       </div>
     </div>
 
@@ -49,7 +67,12 @@
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="director_name">Name</label>
-        <input type="text" id="director_name" class="form-control" v-model="movie.director.name">
+        <input
+          type="text"
+          id="director_name"
+          class="form-control"
+          v-model="movie.director.name"
+        />
       </div>
     </div>
 
@@ -61,7 +84,7 @@
           id="director_nationality"
           class="form-control"
           v-model="movie.director.nationality"
-        >
+        />
       </div>
       <div class="form-group col-md-6">
         <label for="director_birthdate">Birthdate</label>
@@ -70,7 +93,7 @@
           id="director_birthdate"
           class="form-control"
           v-model="movie.director.birthdate"
-        >
+        />
       </div>
     </div>
 
@@ -78,21 +101,28 @@
       v-if="movie && movie.id"
       :to="{ name: 'movie-details', params: { id: movie.id } }"
       class="btn btn-secondary"
-    >Cancel</router-link>
+      >Cancel</router-link
+    >
 
-    <button type="button" class="btn btn-primary float-right" @click="$emit('submitted')">Save</button>
+    <button
+      type="button"
+      class="btn btn-primary float-right"
+      @click="$emit('submitted')"
+    >
+      Save
+    </button>
   </form>
 </template>
 
 <script>
 export default {
-  props: ["movie", "poster"],
+  props: ['movie', 'poster'],
   data() {
     return {
       preview: null,
       reader: new FileReader(),
       searching: false,
-      error: ""
+      error: ''
     };
   },
   methods: {
@@ -111,15 +141,15 @@ export default {
     },
     posterOMDB() {
       this.searching = true;
-      this.$store.dispatch("posterOmdbAPI", this.movie.title).then(res => {
+      this.$store.dispatch('posterOmdbAPI', this.movie.title).then(res => {
         this.searching = false;
         if (res.error) {
           this.error = res.error;
         } else {
           this.movie.poster = res.poster_url;
 
-          this.$refs.posterInput.value = "";
-          this.error = "";
+          this.$refs.posterInput.value = '';
+          this.error = '';
           this.poster.file = null;
           this.preview = null;
         }

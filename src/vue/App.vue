@@ -3,7 +3,7 @@
     <div id="nav">
       <div class="logo">
         <router-link :to="{ name: 'home' }">
-          <img src="vue.png" alt="Logo Vue">
+          <img src="vue.png" alt="Logo Vue" />
         </router-link>
       </div>
 
@@ -14,7 +14,7 @@
       <a href="https://github.com/JulesRx/VueMovies">GitHub</a>
     </div>
     <main class="container">
-      <router-view/>
+      <router-view />
     </main>
   </div>
 </template>
@@ -23,7 +23,7 @@
 export default {
   data() {
     return {
-      title: "VueMovies"
+      title: 'VueMovies'
     };
   }
 };

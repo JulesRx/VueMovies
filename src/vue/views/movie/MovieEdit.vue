@@ -5,7 +5,11 @@
     <p v-if="!movie">Movie not found</p>
 
     <template v-else>
-      <movie-form :movie="movie" :poster="poster" @submitted="updateMovie()"></movie-form>
+      <movie-form
+        :movie="movie"
+        :poster="poster"
+        @submitted="updateMovie()"
+      ></movie-form>
     </template>
   </div>
 </template>
@@ -30,18 +34,18 @@ export default {
   methods: {
     updateMovie() {
       this.$store
-        .dispatch("updateMovieAPI", {
+        .dispatch('updateMovieAPI', {
           movie: this.movie,
           poster: this.poster.file
         })
         .then(() => {
           this.$router.push({
-            name: "movie-details",
+            name: 'movie-details',
             params: { id: this.movie.id }
           });
         })
         .catch(() => {
-          console.error("Cannot edit movie");
+          console.error('Cannot edit movie');
         });
     }
   }

@@ -44,7 +44,7 @@ global.MOVIES = [
     genre: 'Science Fiction',
     ratings: [5, 5, 2]
   }
-]
+];
 
 var app = express();
 
@@ -61,7 +61,10 @@ app.use('/api', api);
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, DELETE, OPTIONS'
+  );
   res.setHeader('Access-Control-Allow-Headers', 'Accept, Origin, Content-Type');
   res.setHeader('Content-Type', 'application/json');
 

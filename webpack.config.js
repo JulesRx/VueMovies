@@ -27,7 +27,7 @@ const config = {
       {
         test: /\.scss$/,
         use: [
-          'vue-style-loader',
+          'vue-style-loader', //
           'css-loader',
           'sass-loader'
         ]
@@ -36,7 +36,7 @@ const config = {
   },
   resolve: {
     extensions: [
-      '.js',
+      '.js', //
       '.vue'
     ]
   },
@@ -45,10 +45,9 @@ const config = {
     new CopyWebpackPlugin(['src/static'], {}),
     new CleanWebpackPlugin(['src/dist'])
   ]
-}
+};
 
 module.exports = (env, argv) => {
-
   if (argv.mode === 'development') {
     config.plugins.push(
       new WebpackShellPlugin({ onBuildEnd: ['node src/node/app.js'] })

@@ -1,7 +1,11 @@
 <template>
   <div class="movie-add">
     <h1>Add a new movie</h1>
-    <movie-form :movie="newMovie" :poster="newPoster" @submitted="addMovie()"></movie-form>
+    <movie-form
+      :movie="newMovie"
+      :poster="newPoster"
+      @submitted="addMovie()"
+    ></movie-form>
   </div>
 </template>
 
@@ -10,16 +14,16 @@ export default {
   data() {
     return {
       newMovie: {
-        title: "",
+        title: '',
         year: null,
-        language: "",
+        language: '',
         director: {
-          name: "",
-          nationality: "",
-          birthdate: ""
+          name: '',
+          nationality: '',
+          birthdate: ''
         },
         poster: null,
-        genre: "",
+        genre: '',
         ratings: []
       },
       newPoster: {
@@ -30,12 +34,12 @@ export default {
   methods: {
     addMovie() {
       this.$store
-        .dispatch("addMovieAPI", {
+        .dispatch('addMovieAPI', {
           movie: this.newMovie,
           poster: this.newPoster.file
         })
         .then(id => {
-          this.$router.push({ name: "movie-details", params: { id: id } });
+          this.$router.push({ name: 'movie-details', params: { id: id } });
         });
     }
   }

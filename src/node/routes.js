@@ -8,7 +8,7 @@ var api = express.Router();
 
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './src/dist/uploads/')
+    cb(null, './src/dist/uploads/');
   },
   filename: (req, file, cb) => {
     cb(null, 'poster-' + Date.now() + '.' + mime.getExtension(file.mimetype));
@@ -26,7 +26,9 @@ var upload = multer({
       return cb(null, true);
     }
 
-    cb('Error: File upload only supports the following filetypes - ' + filetypes);
+    cb(
+      'Error: File upload only supports the following filetypes - ' + filetypes
+    );
   }
 });
 
@@ -49,10 +51,11 @@ api.route('/movies').post(upload.single('poster'), (req, res) => {
 api.route('/movie/:id').get((req, res, next) => {
   var movie = MOVIES.find(m => m.id == req.params.id);
 
-  if (!movie)
+  if (!movie) {
     res.status(404).send({ error: 'Movie not found.' });
-  else
+  } else {
     res.json(movie);
+  }
 });
 
 api.route('/movie/:id').put(upload.single('poster'), (req, res, next) => {
@@ -72,8 +75,7 @@ api.route('/movie/:id').put(upload.single('poster'), (req, res, next) => {
 
     if (req.file != undefined) {
       movie.poster = 'uploads/' + req.file.filename;
-    }
-    else {
+    } else {
       movie.poster = uMovie.poster;
     }
 
@@ -82,7 +84,7 @@ api.route('/movie/:id').put(upload.single('poster'), (req, res, next) => {
 });
 
 api.route('/movie/:id/rate').post((req, res, next) => {
-  var movie = MOVIES.find(m => m.id == req.params.id)
+  var movie = MOVIES.find(m => m.id == req.params.id);
 
   if (!movie) {
     res.status(404).send({ error: 'Movie not found.' });
@@ -97,8 +99,7 @@ api.route('/movie/:id/delete').delete((req, res, next) => {
 
   if (index == -1) {
     res.status(404).send({ error: 'Movie not found.' });
-  }
-  else {
+  } else {
     MOVIES.splice(index, 1);
     res.status(204).send(null);
   }
@@ -106,15 +107,17 @@ api.route('/movie/:id/delete').delete((req, res, next) => {
 
 api.route('/omdb').get((req, res, next) => {
   var title = req.query.title.replace(' ', '+');
-  axios.get('https://www.omdbapi.com/', { params: { apikey: '8633b3c4', t: title } })
+  axios
+    .get('https://www.omdbapi.com/', {
+      params: { apikey: '8633b3c4', t: title }
+    })
     .then(response => {
       if (response.data.Poster) {
         res.status(200).send({ poster_url: response.data.Poster });
       } else {
-        res.status(404).send({ error: 'Poster not found.' })
+        res.status(404).send({ error: 'Poster not found.' });
       }
-    }
-    );
+    });
 });
 
 module.exports = api;

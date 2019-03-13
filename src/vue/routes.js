@@ -17,6 +17,6 @@ export default new VueRouter({
     { path: '/movie/:id', component: MovieDetails, name: 'movie-details' },
     { path: '/movie/:id/edit', component: MovieEdit, name: 'movie-edit' },
     { path: '/about', component: About, name: 'about' },
-    { path: '/', component: Home, name: 'home' },
+    { path: '/', component: Home, name: 'home' }
   ]
 });

@@ -11,20 +11,28 @@
             class="form-control"
             placeholder="Title, Year, Genre, Director..."
             v-model="search"
-          >
+          />
         </div>
       </div>
       <div class="col-md-6 text-right mb-3">
-        <router-link :to="{name: 'movie-add'}" class="btn btn-primary">New movie</router-link>
+        <router-link :to="{ name: 'movie-add' }" class="btn btn-primary"
+          >New movie</router-link
+        >
       </div>
     </div>
 
     <div class="movies row" v-if="movies.length">
-      <movie-item v-for="movie in movies" :key="movie.id" :movie="movie" class="col-md-4"></movie-item>
+      <movie-item
+        v-for="movie in movies"
+        :key="movie.id"
+        :movie="movie"
+        class="col-md-4"
+      ></movie-item>
     </div>
 
-    <p v-else>There isn't any registered movie at the moment...
-      <router-link :to="{name: 'movie-add'}">Add a movie now !</router-link>
+    <p v-else>
+      There isn't any registered movie at the moment...
+      <router-link :to="{ name: 'movie-add' }">Add a movie now !</router-link>
     </p>
   </div>
 </template>
@@ -33,7 +41,7 @@
 export default {
   data() {
     return {
-      search: ""
+      search: ''
     };
   },
   computed: {

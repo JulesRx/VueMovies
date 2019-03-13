@@ -9,7 +9,7 @@ import MovieFormComponent from './components/movie-form.vue';
 import '../static/css/styles.scss';
 
 import rate from 'vue-rate';
-Vue.use(rate)
+Vue.use(rate);
 
 import axios from 'axios';
 Vue.prototype.$http = axios;
@@ -54,12 +54,12 @@ const store = new Vuex.Store({
   },
   actions: {
     getMoviesAPI(context) {
-      axios.get('/api/movies').then((res) => {
+      axios.get('/api/movies').then(res => {
         context.commit('GET_MOVIES', res.data);
       });
     },
     getMovieAPI(context, id) {
-      axios.get('/api/movie/' + id).then((res) => {
+      axios.get('/api/movie/' + id).then(res => {
         context.commit('GET_MOVIE_SELECTED', res.data);
       });
     },
@@ -69,7 +69,8 @@ const store = new Vuex.Store({
         formData.append('movie', JSON.stringify(params.movie));
         formData.append('poster', params.poster);
 
-        axios.post('/api/movies', formData)
+        axios
+          .post('/api/movies', formData)
           .then(res => {
             if (res.status === 200) {
               context.commit('ADD_MOVIE', res.data);
@@ -80,8 +81,8 @@ const store = new Vuex.Store({
           })
           .catch(() => {
             reject();
-          })
-      })
+          });
+      });
     },
     updateMovieAPI(context, params) {
       return new Promise((resolve, reject) => {
@@ -89,7 +90,8 @@ const store = new Vuex.Store({
         data.append('movie', JSON.stringify(params.movie));
         data.append('poster', params.poster);
 
-        axios.put('/api/movie/' + params.movie.id, data)
+        axios
+          .put('/api/movie/' + params.movie.id, data)
           .then(res => {
             if (res.status == 200) {
               context.commit('UPDATE_MOVIE', res.data);
@@ -106,7 +108,8 @@ const store = new Vuex.Store({
     rateMovieAPI(context, params) {
       return new Promise((resolve, reject) => {
         console.log(params);
-        axios.post('/api/movie/' + params.id + '/rate', { rating: params.rating })
+        axios
+          .post('/api/movie/' + params.id + '/rate', { rating: params.rating })
           .then(res => {
             if (res.status === 204) {
               context.commit('RATE_MOVIE', params);
@@ -117,12 +120,13 @@ const store = new Vuex.Store({
           })
           .catch(() => {
             reject();
-          })
-      })
+          });
+      });
     },
     deleteMovieAPI(context, id) {
       return new Promise((resolve, reject) => {
-        axios.delete('/api/movie/' + id + '/delete')
+        axios
+          .delete('/api/movie/' + id + '/delete')
           .then(res => {
             if (res.status == 204) {
               context.commit('DELETE_MOVIE', id);
@@ -138,7 +142,8 @@ const store = new Vuex.Store({
     },
     posterOmdbAPI(context, title) {
       return new Promise((resolve, reject) => {
-        axios.get('/api/omdb', { params: { title: title } })
+        axios
+          .get('/api/omdb', { params: { title: title } })
           .then(res => {
             resolve(res.data);
           })
@@ -146,8 +151,8 @@ const store = new Vuex.Store({
             if (err.response) {
               resolve(err.response.data);
             }
-          })
-      })
+          });
+      });
     }
   }
 });

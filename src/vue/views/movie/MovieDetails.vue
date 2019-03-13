@@ -10,10 +10,10 @@
       <div class="row">
         <div class="col-md-4 poster">
           <img
-            :src="movie.poster?movie.poster:'no-poster.png'"
+            :src="movie.poster ? movie.poster : 'no-poster.png'"
             :alt="movie.title"
             class="img-fluid"
-          >
+          />
         </div>
         <div class="col-md-8 details">
           <h4>About this movie</h4>
@@ -29,7 +29,8 @@
 
             <p>
               <b>Director :</b>
-              {{ movie.director.name }}, {{ movie.director.nationality }} and born the {{ movie.director.birthdate }}.
+              {{ movie.director.name }}, {{ movie.director.nationality }} and
+              born the {{ movie.director.birthdate }}.
             </p>
           </div>
 
@@ -42,8 +43,9 @@
 
             <b>Rate this movie :</b>
             <template v-if="!rated">
-              <br>
-              <p>Your score :
+              <br />
+              <p>
+                Your score :
                 <rate
                   :length="5"
                   v-model="rating"
@@ -58,10 +60,17 @@
           <h4>Options</h4>
           <div class="options">
             <router-link
-              :to="{name: 'movie-edit', params:{ id: movie.id }}"
+              :to="{ name: 'movie-edit', params: { id: movie.id } }"
               class="btn btn-primary"
-            >Edit</router-link>
-            <button type="button" class="btn btn-secondary" @click="deleteMovie()">Delete</button>
+              >Edit</router-link
+            >
+            <button
+              type="button"
+              class="btn btn-secondary"
+              @click="deleteMovie()"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
@@ -83,7 +92,7 @@ export default {
     },
     rate() {
       if (this.movie.ratings.length == 0) {
-        return "N/A";
+        return 'N/A';
       }
 
       return (
@@ -99,33 +108,33 @@ export default {
     this.getMovie();
   },
   watch: {
-    $route: "getMovie"
+    $route: 'getMovie'
   },
   methods: {
     getMovie() {
-      this.$store.dispatch("getMovieAPI", this.$route.params.id);
+      this.$store.dispatch('getMovieAPI', this.$route.params.id);
     },
     deleteMovie() {
-      if (confirm("Are you sure you want to delete this movie ?")) {
+      if (confirm('Are you sure you want to delete this movie ?')) {
         this.$store
-          .dispatch("deleteMovieAPI", this.movie.id)
+          .dispatch('deleteMovieAPI', this.movie.id)
           .then(() => {
-            this.$router.push({ name: "home" });
+            this.$router.push({ name: 'home' });
           })
           .catch(() => {
-            console.error("Cannot delete movie");
+            console.error('Cannot delete movie');
           });
       }
     },
     rateMovie() {
       this.$store
-        .dispatch("rateMovieAPI", { id: this.movie.id, rating: this.rating })
+        .dispatch('rateMovieAPI', { id: this.movie.id, rating: this.rating })
         .then(() => {
           this.rated = true;
-          this.$store.dispatch("getMovieAPI", this.$route.params.id);
+          this.$store.dispatch('getMovieAPI', this.$route.params.id);
         })
         .catch(() => {
-          console.error("Cannot rate movie");
+          console.error('Cannot rate movie');
         });
     }
   }
@@ -153,8 +162,8 @@ export default {
       margin-bottom: 0.5rem;
     }
 
-    .options{
-      .btn{
+    .options {
+      .btn {
         margin-top: 12px;
         margin-right: 4px;
       }
